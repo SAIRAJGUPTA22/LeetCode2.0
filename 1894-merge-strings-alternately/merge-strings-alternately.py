@@ -8,6 +8,6 @@ class Solution:
                 result.append(word1[i])
             if i < len(word2):
                 result.append(word2[i])
-        return ''.join(result)
+        return "".join(result)
                 
 
