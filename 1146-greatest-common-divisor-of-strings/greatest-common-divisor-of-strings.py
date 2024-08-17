@@ -9,7 +9,7 @@ class Solution:
                 b=len(str2)
                 c=min(a,b)
                 for i in range(c,0,-1):
-                    if (b%i==0) & (a%i ==0):
+                    if (b%i==0) and (a%i ==0):
                         return i
             return str1[:gcd(str1,str2)]
 
