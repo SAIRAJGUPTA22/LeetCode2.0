@@ -3,13 +3,15 @@ class Solution:
         if str1+str2 != str2+str1:
             return ''
         if str1+str2 == str2+str1:
-            n1 = max(len(str1),len(str2))
-            n2 = min(len(str1),len(str2))
-
-            def gcd(n1,n2):
-                for i in range(n2,0,-1):
-                    if n1%i == 0 and n2%i == 0:
+            
+            def gcd(a,b):
+                a=len(str1)
+                b=len(str2)
+                c=min(a,b)
+                for i in range(c,0,-1):
+                    if (b%i==0) & (a%i ==0):
                         return i
-                return 1
-        return  str1[:gcd(n1,n2)]
-        
+            return str1[:gcd(str1,str2)]
+
+
+     
