@@ -1,20 +1,24 @@
-WITH actual_trips AS (
-    SELECT t.*
-    FROM Trips t
-    JOIN Users u1 ON t.client_id = u1.users_id AND u1.banned = 'No'
-    JOIN Users u2 ON t.driver_id = u2.users_id AND u2.banned = 'No'
-    WHERE t.request_at BETWEEN '2013-10-01' AND '2013-10-03'
+WITH actual_trips AS
+(
+SELECT * FROM Trips
+WHERE client_id in (SELECT users_id FROM Users WHERE banned ='No')
+AND driver_id in (SELECT users_id FROM Users WHERE banned ='No')
+and request_at between '2013-10-01' and '2013-10-03'
 ),
-trip_stats AS (
-    SELECT 
-        request_at,
-        COUNT(*) AS total_trips,
-        SUM(CASE WHEN status != 'completed' THEN 1 ELSE 0 END) AS cancelled_trips
-    FROM actual_trips
-    GROUP BY request_at
+fulfilled_trips AS
+(
+SELECT request_at, coalesce(COUNT(*),0) as fulfilled
+FROM actual_trips
+WHERE status !='completed'
+GROUP BY request_at
+),
+total_trips AS
+(
+SELECT request_at, coalesce(COUNT(*),0) as total
+FROM actual_trips
+GROUP BY request_at
 )
-SELECT 
-    request_at AS "Day",
-    ROUND(COALESCE(cancelled_trips::numeric / total_trips, 0), 2) AS "Cancellation Rate"
-FROM trip_stats
-ORDER BY request_at;
+SELECT a.request_at as day , round(coalesce(fulfilled::numeric/total,0),2) as "Cancellation Rate"
+FROM total_trips a LEFT JOIN fulfilled_trips f
+on a.request_at = f.request_at
+order by a.request_at
