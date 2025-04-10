@@ -11,8 +11,8 @@ class Solution(object):
             if nums[i] != nums[k-1]:
                 nums[k] = nums[i]
                 k=k+1
-        for i in range(k,len(nums)+1):
-            nums.append('_')
+        for i in range(k,len(nums)):
+            nums[i] = '_'
         return k
 
         
