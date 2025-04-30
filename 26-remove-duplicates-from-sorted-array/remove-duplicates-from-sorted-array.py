@@ -4,16 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if not nums:
-            return 0
         k = 1
         for i in range(1,len(nums)):
-            if nums[i] != nums[k-1]:
+            if nums[i] != nums[i-1]:
                 nums[k] = nums[i]
-                k=k+1
+                k = k+1
         for i in range(k,len(nums)):
-            nums[i] = '_'
+            nums[i]='_'
         return k
-
-        
-        
