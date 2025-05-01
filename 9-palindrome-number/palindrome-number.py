@@ -6,9 +6,10 @@ class Solution(object):
         """
         y = str(x)
 
-        if y == y[::-1]:
+        z = y[::-1]
+        if y == z:
             return True
         else:
             return False
-        
+
         
