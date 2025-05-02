@@ -1,13 +1,18 @@
-class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
-        n=len(nums)-1
-        low = 0
-        while low<=n:
-            x = (low+n)//2
-            if target == nums[x]:
-                return x
-            if nums[x]<target:
-                low = x+1
+class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        left=0
+        right = len(nums)-1
+        while left<=right:
+            mid = (left+right)//2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid]<target:
+               left = mid+1
             else:
-                n=x-1
-        return low
+                right = mid - 1
+        return left
