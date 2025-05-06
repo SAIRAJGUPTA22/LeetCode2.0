@@ -1,13 +1,13 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        numbers = {}
+        numbers={}
         for i,n in enumerate(nums):
             diff = target - n
             if diff in numbers:
-                return[numbers[diff],i]
+                return numbers[diff],i
             else:
-                numbers[n]=i
-
+                numbers[n] = i
+            
     
             
         
