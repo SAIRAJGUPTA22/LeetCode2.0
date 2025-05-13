@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: str
         """
         if not strs:
-            return " "
+            return ""
         strs.sort()
         first_str = strs[0]
         last_str = strs[-1]
@@ -15,7 +15,4 @@ class Solution(object):
                 common += first_str[i]
             else:
                 break
-        
-        return common 
-
-        
+        return common
