@@ -14,19 +14,25 @@ class Solution(object):
         #     return nums.index(n)
         # return -1
 
-        max_val = -1
-        second_max = -1
-        index = -1
+        # max_val = -1
+        # second_max = -1
+        # index = -1
 
-        for i,n in enumerate(nums):
-            if n>max_val:
-                second_max = max_val
-                max_val = n
-                index = i
-            elif n>second_max:
-                second_max = n
-        if max_val >= 2*second_max:
-            return index
+        # for i,n in enumerate(nums):
+        #     if n>max_val:
+        #         second_max = max_val
+        #         max_val = n
+        #         index = i
+        #     elif n>second_max:
+        #         second_max = n
+        # if max_val >= 2*second_max:
+        #     return index
+        # return -1
+
+        n=sorted(nums)
+        maximum = max(nums)
+        if n[-1]>=n[-2]*2:
+            return nums.index(maximum)
         return -1
 
 
