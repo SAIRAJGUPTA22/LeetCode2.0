@@ -5,7 +5,7 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        a= set()
+        a = set()
         for i in range(len(nums)):
             if nums[i] in a:
                 return True
